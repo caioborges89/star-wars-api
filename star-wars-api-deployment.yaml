@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: star-wars-api-deployment
+spec:
+  selector:
+    matchLabels:
+      app: star-wars-api
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: star-wars-api
+    spec:
+      containers:      
+      - name: star-wars-api
+        image: caioborges89/star-wars-api:1.0.0
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 9000
